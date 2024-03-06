@@ -18,9 +18,11 @@ public:
     Bureaucrat & operator = (const Bureaucrat& other);     //Copy Operator
 
     const std::string& getName() const;
-    int getGrade();
+    int getGrade()  const;
     void incrementGrade();
     void decrementGrade();
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
 #endif

@@ -34,10 +34,55 @@ Form::~Form() {
     std::cout << "Destroyed a Form: " << name << ", Grade to sign: " << gradeToSign << ", Grade to execute: " << gradeToExec << std::endl;
 }
 
-Form& Form::operator=(const Form& other) : this->gradeToSign = other.gradeToSign, this->gradeToExec = other.gradeToExec {
-    if (this != &other) {
-        this->isSigned = other.isSigned;
+//Assigment Operator
+Form& Form::operator=(const Form& other) {
+    if (this == &other)
+		return *this;
+	return *this;
+}
+
+//getName
+const   std::string& Form::getName() const {
+    std::cout << "[getName() method called]             ";
+    return (name);
+}
+
+//getGradeToSIgn
+int Form::getGradeToSign() const {
+    std::cout << "[getGradeToSign() method called]            ";
+    return (gradeToSign);
+}
+
+//getGradeToExec
+int Form::getgradeToExec() const {
+    std::cout << "[getGradeToExec() method called]            ";
+    return (gradeToExec);
+}
+
+//overload operator
+std::ostream& operator<<(std::ostream& os, const Form& form) {
+    os << form.getName() << ", Form grade to sign:  " << form.getGradeToSign() << "Form grade to exec: " << form.getgradeToExec() << std::endl;
+    return os;
+}
+
+//method to sign the form
+void Form::beSigned(Bureaucrat bureaucrat) {
+    if (this->isSigned == true)
+    {
+        std::cout << "Form: " << this->getName() << " is already signed!" << std::endl;
     }
-    return *this;
+    else if (bureaucrat.getGrade() < this->getGradeToSign())
+    {
+        this->isSigned = true;
+        std::cout << "Form: " << this->getName() << " was signed by Bureaucrat: " << bureaucrat.getName() << std::endl;
+    }
+    else
+        std::cout << "Form: " << this->getName() << " was not signed due to Bureacrat: " << bureaucrat.getName() << " not having a high enough grade!" << std::endl;
+}
+
+bool    Form::isFormSigned() {
+    if (this->isSigned)
+        return true;
+        return false;
 }
 

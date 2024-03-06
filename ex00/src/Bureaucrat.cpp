@@ -31,11 +31,12 @@ Bureaucrat::~Bureaucrat() {
     std::cout << "Destroyed: " << name << ", Grade: " << grade << std::endl;
 }
 
+//Assigment Operator
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
-    if (this != &other) {
-        this->grade = other.grade;
-    }
-    return *this;
+    if (this == &other)
+		return *this;
+	this->grade = other.getGrade();
+	return *this;
 }
 
 //getName
@@ -45,9 +46,14 @@ const   std::string& Bureaucrat::getName() const {
 }
 
 //getGrade
-int Bureaucrat::getGrade() {
+int Bureaucrat::getGrade() const {
     std::cout << "[getGrade() method called]            ";
     return (grade);
+}
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
+    os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+    return os;
 }
 
 //incrementGrade

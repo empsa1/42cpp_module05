@@ -1,3 +1,4 @@
+#include "../includes/Form.hpp"
 #include "../includes/Bureaucrat.hpp"
 #include "../includes/GradeTooHighException.hpp"
 #include "../includes/GradeTooLowException.hpp"

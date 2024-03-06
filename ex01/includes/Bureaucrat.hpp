@@ -2,6 +2,7 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
 
 class Bureaucrat {
 private:
@@ -18,9 +19,12 @@ public:
     Bureaucrat & operator = (const Bureaucrat& other);     //Copy Operator
 
     const std::string& getName() const;
-    int getGrade();
+    int getGrade()  const;
     void incrementGrade();
     void decrementGrade();
+    void signForm(Form form);
 };
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);
 
 #endif

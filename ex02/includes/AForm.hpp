@@ -5,7 +5,7 @@
 
 class Bureaucrat;
 
-class Form {
+class AForm {
 private:
     const std::string name;
     bool isSigned;
@@ -13,19 +13,22 @@ private:
     const int gradeToExec;
     
 public:
-    Form(void);                                                                 //Default Constructor METHOD
-    Form(const std::string name, int gradeToSign, int gradeToExec);             //Parameterized Constructor
-    Form(const Form& other);                                                    //Copy Constructor METHOD
-    ~Form();                                                                    //Destructor METHOD
+    AForm(void);                                                                 //Default Constructor METHOD
+    AForm(const std::string name, int gradeToSign, int gradeToExec);             //Parameterized Constructor
+    AForm(const AForm& other);                                                    //Copy Constructor METHOD
+    ~AForm();                                                                    //Destructor METHOD
 
-    Form & operator = (const Form& other);                                      //Copy Assignment Operator METHOD
+    AForm & operator = (const AForm& other);                                      //Copy Assignment Operator METHOD
     const std::string& getName() const;
     int getGradeToSign()  const;
     int getgradeToExec()   const;
-    void beSigned(Bureaucrat bureaucrat);
-    bool isFormSigned();
+    bool isAFormSigned();
+
+    
+    virtual void beSigned(Bureaucrat& bureaucrat) = 0;
+    virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
-std::ostream& operator<<(std::ostream& os, const Form& Form);
+std::ostream& operator<<(std::ostream& os, const AForm& AForm);
 
 #endif

@@ -2,8 +2,21 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include <stdexcept>
+#include <cstdlib>
+#include "../includes/Colors.hpp"
 
 class Form;
+
+class GradeTooHighException : public std::exception {
+public:
+    virtual const char* error() const throw();
+};
+
+class GradeTooLowException : public std::exception {
+public:
+    virtual const char* error() const throw();
+};
 
 class Bureaucrat {
 private:

@@ -1,10 +1,12 @@
-SRC = src/Bureaucrat.cpp src/GradeTooHighException.cpp src/GradeTooLowException.cpp src/main.cpp
+SRC = src/Bureaucrat.cpp src/AForm.cpp \
+	src/PresidentialPardonForm.cpp src/RobotomyRequestForm.cpp \
+	src/ShrubberyCreationForm.cpp src/main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Bureacrat
+NAME = Form
 
 all: $(NAME)
 

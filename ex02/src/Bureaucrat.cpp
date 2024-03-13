@@ -1,8 +1,21 @@
 #include "../includes/Bureaucrat.hpp"
-#include "../includes/Form.hpp"
-#include "../includes/GradeTooHighException.hpp"
-#include "../includes/GradeTooLowException.hpp"
-#include <cstdlib>
+#include "../includes/AForm.hpp"
+
+const char* CantExecException::error() const throw() {
+    return "Not enough grade to execute!";
+}
+
+const char* FormNotSignedException::error() const throw() {
+    return "The form is not signed!";
+}
+
+const char* GradeTooHighException::error() const throw() {
+    return "Grade is too high";
+}
+
+const char* GradeTooLowException::error() const throw() {
+    return "Grade is too low";
+}
 
 //Default Constructor
 Bureaucrat::Bureaucrat(void) : name("Not defined"), grade(150) {
@@ -78,8 +91,8 @@ void Bureaucrat::decrementGrade() {
 }
 
 //method to sign forms
-void Bureaucrat::signForm(Form form) {
-    if (form.isFormSigned() == true)
+void Bureaucrat::signForm(AForm & form) {
+    if (form.isAFormSigned() == true)
     {
         std::cout << "Form: " << form.getName() << " is already signed!" << std::endl;
     }
@@ -90,4 +103,10 @@ void Bureaucrat::signForm(Form form) {
     }
     else
         std::cout << "Form: " << form.getName() << " was not signed due to Bureacrat: " << this->getName() << " not having a high enough grade!" << std::endl;
+}
+
+//executeForm function
+void Bureaucrat::executeForm(AForm const & form)
+{
+    form.execute(*this);
 }

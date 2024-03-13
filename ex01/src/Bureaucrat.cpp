@@ -1,39 +1,61 @@
 #include "../includes/Bureaucrat.hpp"
 #include "../includes/Form.hpp"
-#include "../includes/GradeTooHighException.hpp"
-#include "../includes/GradeTooLowException.hpp"
-#include <cstdlib>
 
+const char* GradeTooHighException::error() const throw() {
+    static std::string infoMsg = RED;
+    infoMsg += GRADE_TO_HIGH;
+    infoMsg += RESET;
+    return infoMsg.c_str();
+}
+
+const char* GradeTooLowException::error() const throw() {
+    static std::string infoMsg = RED;
+    infoMsg += GRADE_TO_LOW;
+    infoMsg += RESET;
+    return infoMsg.c_str();
+}
 //Default Constructor
 Bureaucrat::Bureaucrat(void) : name("Not defined"), grade(150) {
-    std::cout << "[Default Constructor called]          ";
-    std::cout << "Created: " << name << ", Grade: " << grade << std::endl;
+    static std::string infoMsg = YELLOW;
+    infoMsg += DEFAULT_CONSTRUCTOR;
+    infoMsg += RESET;
+    std::cout << infoMsg.c_str() << "Created: " << name << ", Grade: " << grade << std::endl;
 }
 
 //Parameter constructor
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name), grade(grade) {
-    std::cout << "[Parametrized Constructor called]     ";
+    static std::string infoMsg = YELLOW;
+    infoMsg += PARAMTER_CONSTRUCTOR;
+    infoMsg += RESET;
     if (grade < 1)
         throw GradeTooHighException();
     else if (grade > 150)
         throw GradeTooLowException();
-    std::cout << "Created: " << name << ", Grade: " << grade << std::endl;
+    std::cout << infoMsg.c_str() << "Created: " << name << ", Grade: " << grade << std::endl;
 } 
 
 // Copy constructor
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade) {
-    std::cout << "[Copy constructor called]             ";
-    std::cout << "Created: " << name << ", Grade: " << grade << std::endl;
+    static std::string infoMsg = YELLOW;
+    infoMsg += COPY_CONSTRUCTOR;
+    infoMsg += RESET;
+    std::cout << infoMsg.c_str() << "Created: " << name << ", Grade: " << grade << std::endl;
 }
 
 // Destructor
 Bureaucrat::~Bureaucrat() {
-    std::cout << "[Destructor called]                   ";
-    std::cout << "Destroyed: " << name << ", Grade: " << grade << std::endl;
+    static std::string infoMsg = YELLOW;
+    infoMsg += DESTRUCTOR;
+    infoMsg += RESET;
+    std::cout << infoMsg.c_str() << "Destroyed: " << name << ", Grade: " << grade << std::endl;
 }
 
 //Assigment Operator
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
+    static std::string infoMsg = YELLOW;
+    infoMsg += DESTRUCTOR;
+    infoMsg += RESET;
+    std::cout << infoMsg.c_str() << std::endl;
     if (this == &other)
 		return *this;
 	this->grade = other.getGrade();
@@ -42,13 +64,19 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 
 //getName
 const   std::string& Bureaucrat::getName() const {
-    std::cout << "[getName() method called]             ";
+    static std::string infoMsg = GREEN;
+    infoMsg += GET_NAME;
+    infoMsg += RESET;
+    std::cout << infoMsg.c_str() << std::endl;
     return (name);
 }
 
 //getGrade
 int Bureaucrat::getGrade() const {
-    std::cout << "[getGrade() method called]            ";
+    static std::string infoMsg = GREEN;
+    infoMsg += GET_GRADE;
+    infoMsg += RESET;
+    std::cout << infoMsg.c_str() << std::endl;
     return (grade);
 }
 
@@ -59,35 +87,42 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
 
 //incrementGrade
 void Bureaucrat::incrementGrade() {
-    std::cout << "[incrementGrade() method called]      ";
+    static std::string infoMsg = GREEN;
+    infoMsg += INCREMENT_GRADE;
+    infoMsg += RESET;
     if (grade - 1 < 1)
         throw GradeTooHighException();
     else
         grade--;
-    std::cout << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
+    std::cout << infoMsg.c_str() << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
 }
 
 //decrementGrade
 void Bureaucrat::decrementGrade() {
-    std::cout << "[decrementGrade() method called]      ";
+    static std::string infoMsg = GREEN;
+    infoMsg += DECREMENT_GRADE;
+    infoMsg += RESET;
     if (grade + 1 > 150)
         throw GradeTooLowException();
     else
         grade++;
-    std::cout << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
+    std::cout << infoMsg.c_str() << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
 }
 
 //method to sign forms
 void Bureaucrat::signForm(Form form) {
+    static std::string infoMsg = GREEN;
+    infoMsg += SIGN_FORM;
+    infoMsg += RESET;
     if (form.isFormSigned() == true)
     {
-        std::cout << "Form: " << form.getName() << " is already signed!" << std::endl;
+        std::cout << infoMsg.c_str() << "Form: " << form.getName() << " is already signed!" << std::endl;
     }
     else if (this->getGrade() < form.getGradeToSign())
     {
         form.beSigned(*this);
-        std::cout << "Form: " << form.getName() << " was signed by Bureaucrat: " << this->getName() << std::endl;
+        std::cout << infoMsg.c_str() << "Form: " << form.getName() << " was signed by Bureaucrat: " << this->getName() << std::endl;
     }
     else
-        std::cout << "Form: " << form.getName() << " was not signed due to Bureacrat: " << this->getName() << " not having a high enough grade!" << std::endl;
+        std::cout << infoMsg.c_str() << "Form: " << form.getName() << " was not signed due to Bureacrat: " << this->getName() << " not having a high enough grade!" << std::endl;
 }

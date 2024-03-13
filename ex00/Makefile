@@ -1,4 +1,4 @@
-SRC = src/Bureaucrat.cpp src/GradeTooHighException.cpp src/GradeTooLowException.cpp src/main.cpp
+SRC = src/Bureaucrat.cpp src/main.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f

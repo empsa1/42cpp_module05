@@ -2,6 +2,7 @@
 # define FORM_HPP
 
 #include <iostream>
+#include "../includes/Colors.hpp"
 
 class Bureaucrat;
 

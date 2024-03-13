@@ -1,77 +1,69 @@
 #include "../includes/Bureaucrat.hpp"
-#include "../includes/GradeTooHighException.hpp"
-#include "../includes/GradeTooLowException.hpp"
-#include <cstdlib>
 
-//Default Constructor
-Bureaucrat::Bureaucrat(void) : name("Not defined"), grade(150) {
-    std::cout << "[Default Constructor called]          ";
-    std::cout << "Created: " << name << ", Grade: " << grade << std::endl;
+const char* GradeTooHighException::error() const throw() {
+    return RED GRADE_TO_HIGH RESET;
 }
 
-//Parameter constructor
+const char* GradeTooLowException::error() const throw() {
+    return RED GRADE_TO_LOW RESET;
+}
+
+Bureaucrat::Bureaucrat(void) : name("Not defined"), grade(150) {
+    std::cout << YELLOW DEFAULT_CONSTRUCTOR RESET << "Created: " << name << ", Grade: " << grade << std::endl;
+}
+
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name), grade(grade) {
-    std::cout << "[Parametrized Constructor called]     ";
     if (grade < 1)
         throw GradeTooHighException();
     else if (grade > 150)
         throw GradeTooLowException();
-    std::cout << "Created: " << name << ", Grade: " << grade << std::endl;
+    std::cout << BLUE PARAMTER_CONSTRUCTOR RESET << "Created: " << name << ", Grade: " << grade << std::endl;
 } 
 
-// Copy constructor
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade) {
-    std::cout << "[Copy constructor called]             ";
-    std::cout << "Created: " << name << ", Grade: " << grade << std::endl;
+    std::cout << YELLOW COPY_CONSTRUCTOR RESET << "Created: " << name << ", Grade: " << grade << std::endl;
 }
 
-// Destructor
 Bureaucrat::~Bureaucrat() {
-    std::cout << "[Destructor called]                   ";
-    std::cout << "Destroyed: " << name << ", Grade: " << grade << std::endl;
+    std::cout << YELLOW DESTRUCTOR RESET << "Destroyed: " << name << ", Grade: " << grade << std::endl;
 }
 
-//Assigment Operator
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
-    if (this == &other)
-		return *this;
 	this->grade = other.getGrade();
 	return *this;
 }
 
-//getName
 const   std::string& Bureaucrat::getName() const {
-    std::cout << "[getName() method called]             ";
+    std::cout << GREEN GET_NAME RESET << std::endl;
     return (name);
 }
 
-//getGrade
 int Bureaucrat::getGrade() const {
-    std::cout << "[getGrade() method called]            ";
+oMsg += RESET;
+    std::cout << infoMsg;
     return (grade);
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
-    os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+    os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << std::endl;
     return os;
 }
 
-//incrementGrade
 void Bureaucrat::incrementGrade() {
-    std::cout << "[incrementGrade() method called]      ";
+   infoMsg += RESET;
+    std::cout << infoMsg;
     if (grade - 1 < 1)
         throw GradeTooHighException();
     else
         grade--;
-    std::cout << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
+    std::cout << infoMsg << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
 }
 
-//decrementGrade
 void Bureaucrat::decrementGrade() {
-    std::cout << "[decrementGrade() method called]      ";
+   infoMsg += RESET;
     if (grade + 1 > 150)
         throw GradeTooLowException();
     else
         grade++;
-    std::cout << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
+    std::cout << infoMsg << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
 }

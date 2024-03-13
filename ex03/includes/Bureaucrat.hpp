@@ -4,7 +4,18 @@
 #include <iostream>
 #include <stdexcept>
 #include <cstdlib>
-#include "../includes/Colors.hpp"
+
+class AForm;
+
+class CantExecException : public std::exception {
+public:
+    virtual const char* error() const throw();
+};
+
+class FormNotSignedException : public std::exception {
+public:
+    virtual const char* error() const throw();
+};
 
 class GradeTooHighException : public std::exception {
 public:
@@ -23,17 +34,19 @@ private:
 
 public:
     Bureaucrat(void); 
-    Bureaucrat(const std::string& name, int grade);
-    Bureaucrat(const Bureaucrat& other);
+    Bureaucrat(const std::string& name, int grade);     //Default Constructor1
+    Bureaucrat(const Bureaucrat& other);                //Copy Constructor
 
-    ~Bureaucrat();
+    ~Bureaucrat();                                      //Destructor
 
-    Bureaucrat & operator = (const Bureaucrat& other);
+    Bureaucrat & operator = (const Bureaucrat& other);     //Copy Operator
 
     const std::string& getName() const;
     int getGrade()  const;
     void incrementGrade();
     void decrementGrade();
+    void signForm(AForm & form);
+    void executeForm(AForm const & form);
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);

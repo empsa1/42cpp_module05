@@ -1,20 +1,20 @@
 #include "../includes/AForm.hpp"
-#include "../includes/PresidentialPardonForm.hpp"
-#include "../includes/ShrubberyCreationForm.hpp"
-#include "../includes/RobotomyRequestForm.hpp"
-#include "../includes/Bureaucrat.hpp"
+#include "../includes/Intern.hpp"
+
 # define SUCCESS 0
 # define FAILURE 1
 
 int main() {
     try {
+        Intern intern;
         Bureaucrat bureaucrat("John Doe", 1);
         Bureaucrat a = bureaucrat;
         PresidentialPardonForm presidential("A");
         RobotomyRequestForm robotomy("B");
         ShrubberyCreationForm shrubbery("C");
         Bureaucrat b;
-        presidential.execute(a);
+        intern.makeForm("PresidentialPardonForm", "england");
+        presidential.beSigned(a);
         presidential.beSigned(a);
         std::cout << "Is form signed: " << presidential.isAFormSigned() << std::endl;
         a.decrementGrade();

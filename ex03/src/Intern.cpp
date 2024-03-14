@@ -1,7 +1,14 @@
 #include "../includes/Intern.hpp"
+#include "../includes/Colors.hpp"
 
 Intern::Intern(void)
 {
+    std::cout << YELLOW DEFAULT_CONSTRUCTOR RESET << std::endl;
+}
+
+Intern::~Intern()
+{
+    std::cout << YELLOW DESTRUCTOR RESET << std::endl;
 }
 
 AForm* Intern::makeForm(std::string s1, std::string s2)

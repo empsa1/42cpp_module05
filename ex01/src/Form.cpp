@@ -3,17 +3,11 @@
 
 //Default Constructor
 Form::Form() : name("Not assigned"), isSigned(false), gradeToSign(150), gradeToExec(150) {
-    static std::string infoMsg = YELLOW;
-    infoMsg += DEFAULT_CONSTRUCTOR;
-    infoMsg += RESET;
-    std::cout << infoMsg.c_str() << "Created a Form: " << name << ", Grade to sign: " << gradeToSign << ", Grade to execute: " << gradeToExec << std::endl;
+    std::cout << YELLOW DEFAULT_CONSTRUCTOR RESET << "Created a Form: " << name << ", Grade to sign: " << gradeToSign << ", Grade to execute: " << gradeToExec << std::endl;
 }
 
 //Parameter constructor
 Form::Form(const std::string name, int gradeToSign, int gradeToExec) : name(name), isSigned(false), gradeToSign(gradeToSign), gradeToExec(gradeToExec) {
-    static std::string infoMsg = YELLOW;
-    infoMsg += PARAMTER_CONSTRUCTOR;
-    infoMsg += RESET;
     if (gradeToSign < 1)
         throw GradeTooHighException();
     else if (gradeToExec < 1)
@@ -22,31 +16,22 @@ Form::Form(const std::string name, int gradeToSign, int gradeToExec) : name(name
         throw GradeTooLowException();
     else if (gradeToExec > 150)
         throw GradeTooLowException();
-    std::cout << infoMsg.c_str() << "Created a Form: " << name << ", Grade to sign: " << gradeToSign << ", Grade to execute: " << gradeToExec << std::endl;
+    std::cout << YELLOW PARAMTER_CONSTRUCTOR RESET << "Created a Form: " << name << ", Grade to sign: " << gradeToSign << ", Grade to execute: " << gradeToExec << std::endl;
 }
 
 //Copy constructor
 Form::Form(const Form& other) : name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExec(other.gradeToExec) {
-    static std::string infoMsg = YELLOW;
-    infoMsg += COPY_CONSTRUCTOR;
-    infoMsg += RESET;
-    std::cout << infoMsg.c_str() << "Created a Form: " << name << ", Grade to sign: " << gradeToSign << ", Grade to execute: " << gradeToExec << std::endl;
+    std::cout << YELLOW COPY_CONSTRUCTOR RESET << "Created a Form: " << name << ", Grade to sign: " << gradeToSign << ", Grade to execute: " << gradeToExec << std::endl;
 }
 
 // Destructor
 Form::~Form() {
-    static std::string infoMsg = YELLOW;
-    infoMsg += DESTRUCTOR;
-    infoMsg += RESET;
-    std::cout << infoMsg.c_str() << "Destroyed a Form: " << name << ", Grade to sign: " << gradeToSign << ", Grade to execute: " << gradeToExec << std::endl;
+    std::cout << YELLOW DESTRUCTOR RESET << "Destroyed a Form: " << name << ", Grade to sign: " << gradeToSign << ", Grade to execute: " << gradeToExec << std::endl;
 }
 
 //Assigment Operator
 Form& Form::operator=(const Form& other) {
-    static std::string infoMsg = YELLOW;
-    infoMsg += ASSIGMENT_OPERATOR;
-    infoMsg += RESET;
-    std::cout << infoMsg.c_str() << std::endl;
+    std::cout << YELLOW ASSIGMENT_OPERATOR RESET;
     if (this == &other)
 		return *this;
 	return *this;
@@ -54,34 +39,25 @@ Form& Form::operator=(const Form& other) {
 
 //getName
 const   std::string& Form::getName() const {
-    static std::string infoMsg = GREEN;
-    infoMsg += GET_NAME;
-    infoMsg += RESET;
-    std::cout << infoMsg.c_str() << std::endl;    
+    std::cout << GREEN GET_NAME RESET;    
     return (name);
 }
 
 //getGradeToSIgn
 int Form::getGradeToSign() const {
-    static std::string infoMsg = GREEN;
-    infoMsg += GET_GRADE_TO_SIGN;
-    infoMsg += RESET;
-    std::cout << infoMsg.c_str() << std::endl;
+    std::cout << GREEN GET_GRADE_TO_SIGN RESET;
     return (gradeToSign);   
 }
 
 //getGradeToExec
 int Form::getgradeToExec() const {
-    static std::string infoMsg = GREEN;
-    infoMsg += GET_GRADE_TO_SIGN;
-    infoMsg += RESET;
-    std::cout << GET_EXEC_GRADE << std::endl;
+    std::cout << GREEN GET_EXEC_GRADE RESET;
     return (gradeToExec);
 }
 
 //overload operator
 std::ostream& operator<<(std::ostream& os, const Form& form) {
-    os << form.getName() << ", Form grade to sign:  " << form.getGradeToSign() << "Form grade to exec: " << form.getgradeToExec() << std::endl;
+    os << CYAN OVERLOAD_OPERATOR RESET << form.getName() << ", Form grade to sign:  " << form.getGradeToSign() << "Form grade to exec: " << form.getgradeToExec() << std::endl;
     return os;
 }
 

@@ -9,6 +9,7 @@
 class Intern {
     public:
         Intern(void); 
+        ~Intern(void);
         AForm* makeForm(std::string s1, std::string s2);
 };
 

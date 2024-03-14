@@ -27,5 +27,6 @@
 #define SIGN_FORM               "[signForm() method called]         "
 #define GET_EXEC_GRADE          "[getGradeToExec() called]          "
 #define GET_GRADE_TO_SIGN       "[getGradeToSign() called]          "
+#define OVERLOAD_OPERATOR       "[Overload operator called]         "
 
 #endif

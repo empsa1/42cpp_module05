@@ -8,17 +8,16 @@ int main()
 	try
 	{
 		Bureaucrat b("ze", -100);
-		//std::cout << b;
-		//b.incrementGrade();
-		//std::cout << b.getGrade() << "\n";
-		//b.decrementGrade();
-		//std::cout << b.getGrade() << "\n";
+		std::cout << b;	
+		b.incrementGrade();
+		std::cout << b.getGrade() << "\n";
+		b.decrementGrade();
+		std::cout << b.getGrade() << "\n";
 	}
 	catch(const GradeTooHighException& e)
 	{
 		std::cout << e.error();
 	}
-    /*
 	std::cout << "\n===== Try creating a Bureaucrat with 151 =====\n\n";
 	try
 	{
@@ -48,11 +47,11 @@ int main()
     catch(const GradeTooHighException& e)
 	{
 		std::cout << e.error();
-	}*/
+	}
 	std::cout << "\n===== Try creating a Bureaucrat with 1 =====\n\n";
     try {
 	    Bureaucrat b("ze", 1);
-	    /*std::cout << b;
+	    std::cout << b;
 	    std::cout << "Prints\n";
 	    b.incrementGrade();
 	    std::cout << "Will not print\n";
@@ -62,7 +61,7 @@ int main()
 	    b.decrementGrade();
 	    std::cout << b.getGrade() << "\n";
 	    b.decrementGrade();
-	    std::cout << b.getGrade() << "\n";*/
+	    std::cout << b.getGrade() << "\n";
     } catch(const GradeTooLowException& e)
 	{
 		std::cout << e.error();

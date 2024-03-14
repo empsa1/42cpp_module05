@@ -6,34 +6,87 @@
 # define SUCCESS 0
 # define FAILURE 1
 
-int main() {
-    try {
-        Bureaucrat bureaucrat("John Doe", 1);
-        Bureaucrat a = bureaucrat;
-        PresidentialPardonForm presidential("A");
-        RobotomyRequestForm robotomy("B");
-        ShrubberyCreationForm shrubbery("C");
-        Bureaucrat b;
-        presidential.execute(a);
-        presidential.beSigned(a);
-        std::cout << "Is form signed: " << presidential.isAFormSigned() << std::endl;
-        a.decrementGrade();
-        bureaucrat.decrementGrade();
-        std::cout << b.getGrade() << std::endl;
-        std::cout << b.getName() << std::endl;
-        std::cout << "Using the overload operator: " <<  b << std::endl;
-        std::cout << bureaucrat.getGrade() << std::endl;
-        std::cout << bureaucrat.getName() << std::endl;
-        std::cout << "Using the overload operator: " <<  a << std::endl;
-        return (SUCCESS);
-    } catch (const GradeTooHighException& e) {
-        std::cerr << "Caught GradeTooHighException:     " << e.error() << std::endl;
-    } catch (const GradeTooLowException& e) {
-        std::cerr << "Caught GradeTooLowException:      " << e.error() << std::endl;
-    } catch (const CantExecException& e) {
-        std::cerr << "Caught CantExecException:         " << e.error() << std::endl;
-    } catch (const FormNotSignedException& e) {
-        std::cerr << "Caught FormNotSignedException:    " << e.error() << std::endl;
-    }
-    return (FAILURE);
+int main()
+{
+	/*	
+		ShrybberyCreationForm:	sign:145, exec: 137;
+		RobotomyRequestForm:	sign: 72, exec: 45;
+		PresidentialPardonForm:	sign: 25, exec: 5;
+	*/
+	std::cout << "\n===== Sign fail, Exec ok =====\n\n";
+	try
+	{
+		Bureaucrat b("ze", 147);
+		std::cout << b << std::endl;
+		PresidentialPardonForm f("someGuy");
+		std::cout << f << std::endl;
+		b.signForm(f);
+	}
+	catch(std::exception& e)
+	{
+		std::cout << e.what();
+	}
+
+	std::cout << "\n===== Sign ok, Exec fail =====\n\n";
+	try
+	{
+		Bureaucrat b("ze", 6);
+		std::cout << b << std::endl;
+		PresidentialPardonForm f("someGuy");
+		std::cout << f << std::endl;
+		b.signForm(f);
+		std::cout << f << std::endl;
+		b.executeForm(f);
+	}
+	catch(std::exception& e)
+	{
+		std::cout << e.what();
+	}
+
+	std::cout << "\n===== PresidentialPardonForm Sign ok, Exec ok =====\n\n";
+	try
+	{
+		Bureaucrat b("ze", 5);
+		std::cout << b << std::endl;
+		PresidentialPardonForm f("someGuy");
+		std::cout << f << std::endl;
+		b.signForm(f);
+		std::cout << f << std::endl;
+		b.executeForm(f);
+	}
+	catch(std::exception& e)
+	{
+		std::cout << e.what();
+	}
+
+	std::cout << "\n===== ShrubberyCreationForm Sign ok, Exec ok =====\n\n";
+	try
+	{
+		Bureaucrat b("ze", 5);
+		ShrubberyCreationForm f("someGuy");
+		std::cout << f << std::endl;
+		b.signForm(f);
+		std::cout << f << std::endl;
+		b.executeForm(f);
+	}
+	catch(std::exception& e)
+	{
+		std::cout << e.what();
+	}
+
+	std::cout << "\n===== RobotomyRequestForm Sign ok, Exec ok =====\n\n";
+	try
+	{
+		Bureaucrat b("ze", 5);
+		RobotomyRequestForm f("someGuy");
+		std::cout << f << std::endl;
+		b.signForm(f);
+		std::cout << f << std::endl;
+		b.executeForm(f);
+	}
+	catch(std::exception& e)
+	{
+		std::cout << e.what();
+	}
+	return (0);
 }

@@ -34,36 +34,32 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 }
 
 const   std::string& Bureaucrat::getName() const {
-    std::cout << GREEN GET_NAME RESET << std::endl;
+    std::cout << GREEN GET_NAME RESET;
     return (name);
 }
 
 int Bureaucrat::getGrade() const {
-oMsg += RESET;
-    std::cout << infoMsg;
+    std::cout << GREEN GET_GRADE RESET; 
     return (grade);
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
-    os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << std::endl;
+    os << CYAN OVERLOAD_OPERATOR RESET << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << std::endl;
     return os;
 }
 
 void Bureaucrat::incrementGrade() {
-   infoMsg += RESET;
-    std::cout << infoMsg;
     if (grade - 1 < 1)
         throw GradeTooHighException();
     else
         grade--;
-    std::cout << infoMsg << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
+    std::cout << GREEN INCREMENT_GRADE RESET << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
 }
 
 void Bureaucrat::decrementGrade() {
-   infoMsg += RESET;
     if (grade + 1 > 150)
         throw GradeTooLowException();
     else
         grade++;
-    std::cout << infoMsg << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
+    std::cout << GREEN DECREMENT_GRADE RESET << "Changed grade for: " << name << ", Grade: " << grade << std::endl;
 }

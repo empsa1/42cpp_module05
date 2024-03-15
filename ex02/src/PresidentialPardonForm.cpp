@@ -44,17 +44,21 @@ void PresidentialPardonForm::beSigned(Bureaucrat const & bureaucrat) {
 //execute implementation
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-	if (this->isAFormSigned())
-	{
-		if (this->getgradeToExec() <= executor.getGrade())
-		{
-			std::cout << executor.getName() << " signed " << this->getName() << std::endl;
-		}
-		else {
-			throw CantExecException();
-		}
-	}
-	else {
-		throw FormNotSignedException();
-	}
+    if (this->isAFormSigned() == true)
+    {
+        if (this->getgradeToExec() >= executor.getGrade())
+        {
+            std::cout << executor.getName() << " executed " << this->getName() << std::endl;
+            std::cout << BLUE << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." << RESET << std::endl;
+        }
+        else
+        {
+            throw CantExecException();
+        }
+    }
+    else
+    {
+        throw FormNotSignedException();
+    }
 }
+

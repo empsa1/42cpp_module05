@@ -44,17 +44,31 @@ void RobotomyRequestForm::beSigned(Bureaucrat const & bureaucrat) {
 //execute implementation
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
-	if (this->isAFormSigned())
-	{
-		if (this->getgradeToExec() <= executor.getGrade())
-		{
-			std::cout << executor.getName() << " signed " << this->getName() << std::endl;
-		}
-		else {
-			throw CantExecException();
-		}
-	}
-	else {
-		throw FormNotSignedException();
-	}
+    if (this->isAFormSigned())
+    {
+        if (this->getgradeToExec() <= executor.getGrade())
+        {
+            std::cout << executor.getName() << " executed " << this->getName() << std::endl;
+            srand(time(NULL));
+            int successRate = rand() % 100;
+            if (successRate < 50)
+            {
+                std::cout << "Drilling noises... " << std::endl;
+                std::cout << this->getTarget() << " has been robotomized successfully!" << std::endl;
+            }
+            else
+            {
+                std::cout << "Drilling noises... " << std::endl;
+                std::cout << "Robotomy on " << this->getTarget() << " failed." << std::endl;
+            }
+        }
+        else
+        {
+            throw CantExecException();
+        }
+    }
+    else
+    {
+        throw FormNotSignedException();
+    }
 }

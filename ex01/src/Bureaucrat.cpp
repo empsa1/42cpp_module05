@@ -1,15 +1,6 @@
 #include "../includes/Bureaucrat.hpp"
 #include "../includes/Form.hpp"
-
-#include "../includes/Bureaucrat.hpp"
-
-const char* GradeTooHighException::error() const throw() {
-    return RED GRADE_TO_HIGH RESET;
-}
-
-const char* GradeTooLowException::error() const throw() {
-    return RED GRADE_TO_LOW RESET;
-}
+#include "../includes/Colors.hpp"
 
 Bureaucrat::Bureaucrat(void) : name("Not defined"), grade(150) {
     std::cout << YELLOW DEFAULT_CONSTRUCTOR RESET << "Created: " << name << ", Grade: " << grade << std::endl;

@@ -8,9 +8,17 @@
 
 class Intern {
     public:
+        class InvalidForm : public std::exception
+        {
+            public:
+                virtual const char* what() const throw()
+                {
+                    return (RED INVALID_FORM RESET);
+                }
+        };
         Intern(void); 
         ~Intern(void);
-        AForm* makeForm(std::string s1, std::string s2);
+        AForm* makeForm(std::string name, std::string target) const;
 };
 
 #endif

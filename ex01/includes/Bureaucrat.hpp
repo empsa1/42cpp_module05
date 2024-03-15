@@ -8,22 +8,29 @@
 
 class Form;
 
-class GradeTooHighException : public std::exception {
-public:
-    virtual const char* error() const throw();
-};
-
-class GradeTooLowException : public std::exception {
-public:
-    virtual const char* error() const throw();
-};
-
 class Bureaucrat {
 private:
     const std::string name;
-    int grade;
+    int grade;  
 
 public:
+    class GradeTooHighException : public std::exception
+    {
+        public:
+            virtual const char* what() const throw()
+            {
+                return (RED GRADE_TO_HIGH RESET);
+                }
+    };
+
+class GradeTooLowException : public std::exception
+    {
+        public:
+            virtual const char* what() const throw()
+            {
+                return (RED GRADE_TO_LOW RESET);
+            }
+    };
     Bureaucrat(void); 
     Bureaucrat(const std::string& name, int grade);     //Default Constructor1
     Bureaucrat(const Bureaucrat& other);                //Copy Constructor

@@ -29,6 +29,7 @@
 #define GET_GRADE_TO_SIGN       "[getGradeToSign() called]          "
 #define OVERLOAD_OPERATOR       "[Overload operator called]         "
 #define FORM_NOT_SIGNED         "[The form is not yet signed]       "
-#define CANT_EXEC_FORM          "[No permissions to exec form]      " 
+#define CANT_EXEC_FORM          "[No permissions to exec form]      "
+#define INVALID_FORM            "[Form callout doesnt exist]        "
 
 #endif

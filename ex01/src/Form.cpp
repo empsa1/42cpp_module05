@@ -1,6 +1,7 @@
 #include "../includes/Form.hpp"
 #include "../includes/Bureaucrat.hpp"
 
+
 //Default Constructor
 Form::Form() : name("Not assigned"), isSigned(false), gradeToSign(150), gradeToExec(150) {
     std::cout << YELLOW DEFAULT_CONSTRUCTOR RESET << "Created a Form: " << name << ", Grade to sign: " << gradeToSign << ", Grade to execute: " << gradeToExec << std::endl;
@@ -57,7 +58,7 @@ int Form::getgradeToExec() const {
 
 //overload operator
 std::ostream& operator<<(std::ostream& os, const Form& form) {
-    os << CYAN OVERLOAD_OPERATOR RESET << form.getName() << ", Form grade to sign:  " << form.getGradeToSign() << "Form grade to exec: " << form.getgradeToExec() << std::endl;
+    os << CYAN OVERLOAD_OPERATOR RESET << form.getName() << ", Form grade to sign:  " << form.getGradeToSign() << " " << "Form grade to exec: " << form.getgradeToExec() << std::endl;
     return os;
 }
 
@@ -73,7 +74,7 @@ void Form::beSigned(Bureaucrat bureaucrat) {
         std::cout << "Form: " << this->getName() << " was signed by Bureaucrat: " << bureaucrat.getName() << std::endl;
     }
     else
-        std::cout << "Form: " << this->getName() << " was not signed due to Bureacrat: " << bureaucrat.getName() << " not having a high enough grade!" << std::endl;
+        throw GradeTooLowException();
 }
 
 bool    Form::isFormSigned() {

@@ -15,7 +15,7 @@ int main()
 		std::cout << *f;
 		b.signForm(*f);
 		b.executeForm(*f);
-		//delete f;
+		delete f;
 	}
 	catch(std::exception& e)
 	{
@@ -31,7 +31,7 @@ int main()
 		std::cout << *f;
 		b.signForm(*f);
 		b.executeForm(*f);
-		//delete f;
+		delete f;
 	}
 	catch(std::exception& e)
 	{
@@ -47,7 +47,7 @@ int main()
 		std::cout << *f;
 		b.signForm(*f);
 		b.executeForm(*f);
-		//delete f;
+		delete f;
 	}
 	catch(std::exception& e)
 	{
@@ -63,7 +63,7 @@ int main()
 		std::cout << *f;
 		b.signForm(*f);
 		b.executeForm(*f);
-		//delete f;
+		delete f;
 	}
 	catch(std::exception& e)
 	{

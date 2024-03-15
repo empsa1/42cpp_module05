@@ -44,17 +44,38 @@ void ShrubberyCreationForm::beSigned(Bureaucrat const & bureaucrat) {
 //execute implementation
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	if (this->isAFormSigned())
-	{
-		if (this->getgradeToExec() <= executor.getGrade())
-		{
-			std::cout << executor.getName() << " signed " << this->getName() << std::endl;
-		}
-		else {
-			throw CantExecException();
-		}
-	}
-	else {
-		throw FormNotSignedException();
-	}
+    if (this->isAFormSigned())
+    {
+        if (this->getgradeToExec() <= executor.getGrade())
+        {
+            std::cout << executor.getName() << " executed " << this->getName() << std::endl;
+            std::ofstream outFile((this->target + "_shrubbery").c_str());
+
+            if (outFile.is_open())
+            {
+                outFile << "      /\\      " << std::endl;
+                outFile << "     /\\*\\     " << std::endl;
+                outFile << "    /\\O\\*\\    " << std::endl;
+                outFile << "   /*/\\/\\/\\   " << std::endl;
+                outFile << "  /\\O\\/\\*\\/\\  " << std::endl;
+                outFile << " /\\*\\/\\*\\/\\/\\ " << std::endl;
+                outFile << "/\\O\\/\\/*/\\/O/\\" << std::endl;
+                outFile << "      ||      " << std::endl;
+                outFile << "      ||      " << std::endl;
+                outFile << "      ||      " << std::endl;
+
+                outFile.close();
+            }
+            else
+            {
+                std::cout << "Unable to create/open file: " << this->target + "_shrubbery" << std::endl;
+            }
+        }
+        else {
+            throw CantExecException();
+        }
+    }
+    else {
+        throw FormNotSignedException();
+    }
 }

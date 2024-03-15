@@ -2,22 +2,6 @@
 #include "../includes/AForm.hpp"
 #include "../includes/Colors.hpp"
 
-const char* CantExecException::error() const throw() {
-    return RED CANT_EXEC_FORM RESET;
-}
-
-const char* FormNotSignedException::error() const throw() {
-    return RED FORM_NOT_SIGNED RESET;
-}
-
-const char* GradeTooHighException::error() const throw() {
-    return RED GRADE_TO_HIGH RESET;
-}
-
-const char* GradeTooLowException::error() const throw() {
-    return RED GRADE_TO_LOW RESET;
-}
-
 Bureaucrat::Bureaucrat(void) : name("Not defined"), grade(150) {
     std::cout << YELLOW DEFAULT_CONSTRUCTOR RESET << "Created: " << name << ", Grade: " << grade << std::endl;
 }
@@ -92,5 +76,12 @@ void Bureaucrat::signForm(AForm & form) {
 //executeForm function
 void Bureaucrat::executeForm(AForm const & form)
 {
-    form.execute(*this);
+    try
+    {
+        form.execute(*this);
+    }
+    catch (const std::exception &e)
+    {
+        std::cout << e.what() << std::endl;
+    }
 }

@@ -46,7 +46,7 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
     if (this->isAFormSigned() == true)
     {
-        if (this->getgradeToExec() <= executor.getGrade())
+        if (this->getgradeToExec() >= executor.getGrade())
         {
             std::cout << executor.getName() << " executed " << this->getName() << std::endl;
             std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;

@@ -42,6 +42,15 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
     return os;
 }
 
+void Bureaucrat::setGrade(int grade)
+{
+    if (grade > 150)
+        throw(Bureaucrat::GradeTooHighException());
+    if (grade < 1)
+        throw(Bureaucrat::GradeTooLowException());
+    this->grade = grade;
+}
+
 void Bureaucrat::incrementGrade() {
     if (grade - 1 < 1)
         throw GradeTooHighException();
@@ -59,18 +68,8 @@ void Bureaucrat::decrementGrade() {
 }
     
 //method to sign forms
-void Bureaucrat::signForm(AForm & form) {
-    if (form.isAFormSigned() == true)
-    {
-        std::cout << "Form: " << form.getName() << " is already signed!" << std::endl;
-    }
-    else if (this->getGrade() < form.getGradeToSign())
-    {
-        form.beSigned(*this);
-        std::cout << "Form: " << form.getName() << " was signed by Bureaucrat: " << this->getName() << std::endl;
-    }
-    else
-        std::cout << "Form: " << form.getName() << " was not signed due to Bureacrat: " << this->getName() << " not having a high enough grade!" << std::endl;
+void Bureaucrat::signForm(AForm& form) {
+    form.beSigned(*this);
 }
 
 //executeForm function

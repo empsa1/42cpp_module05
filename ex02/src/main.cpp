@@ -6,23 +6,6 @@
 # define SUCCESS 0
 # define FAILURE 1
 
-// int main()
-// {
-// 	try
-// 	{
-// 		Bureaucrat b("ze", 1);
-// 		ShrubberyCreationForm f("/home/eportela/Desktop/42cpp_module05/ex02");
-// 		b.signForm(f);
-// 		b.executeForm(f);
-// 	}
-// 	catch(const std::exception& e)
-// 	{
-// 		std::cerr << e.what() << std::endl;
-// 	}
-	
-// 	return 0;
-// }
-
 int main()
 {
 	/*	
@@ -38,6 +21,8 @@ int main()
 		PresidentialPardonForm f("someGuy");
 		std::cout << f << std::endl;
 		b.signForm(f);
+		std::cout << f << std::endl;
+		b.executeForm(f);
 	}
 	catch(std::exception& e)
 	{

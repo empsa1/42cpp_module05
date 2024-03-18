@@ -25,12 +25,12 @@ int main()
 	{
 		Bureaucrat b("ze", 100);
 		Form f("form1", 100, 10);
-		std::cout << b;
-		std::cout << f;
+		//std::cout << b;
+		//std::cout << f;
 		b.signForm(f);
-		std::cout << f;
+		//std::cout << f;
 		b.signForm(f);
-		std::cout << f;
+		//std::cout << f;
 	}
 	catch(std::exception& e)
 	{

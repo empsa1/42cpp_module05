@@ -2,16 +2,16 @@ SRC = src/Bureaucrat.cpp src/AForm.cpp \
 	src/PresidentialPardonForm.cpp src/RobotomyRequestForm.cpp \
 	src/ShrubberyCreationForm.cpp src/Intern.cpp src/main.cpp
 OBJ = $(SRC:.cpp=.o)
-CC = c++
+CXX = c++
 RM = rm -f
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = Intern
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)

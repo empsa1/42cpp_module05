@@ -11,10 +11,18 @@ Intern::~Intern()
     std::cout << YELLOW DESTRUCTOR RESET << std::endl;
 }
 
-AForm *Intern::makeForm(std::string name, std::string target) const
-{
-    std::string names[] = {"ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
-    AForm *forms[] = {new ShrubberyCreationForm(target), new RobotomyRequestForm(target), new PresidentialPardonForm(target)};
+Intern::Intern(const Intern&) {
+    std::cout << YELLOW COPY_CONSTRUCTOR RESET << std::endl;
+}
+
+Intern& Intern::operator=(const Intern&) {
+    std::cout << YELLOW ASSIGMENT_OPERATOR RESET << std::endl;
+    return *this;
+}
+
+AForm* Intern::makeForm(const std::string& name, const std::string& target) const {
+    static const std::string names[] = {"ShrubberyCreationForm", "RobotomyRequestForm", "PresidentialPardonForm"};
+    AForm* forms[] = {new ShrubberyCreationForm(target), new RobotomyRequestForm(target), new PresidentialPardonForm(target)};
     int index = -1;
     for (int i = 0; i < 3; ++i) {
         if (name == names[i]) {
@@ -22,9 +30,7 @@ AForm *Intern::makeForm(std::string name, std::string target) const
             break;
         }
     }
-    if (index == -1)
-    {
-        std::cout << RED "Intern creates an invalid form: " RESET << name << std::endl;
+    if (index == -1) {
         for (int i = 0; i < 3; ++i) {
             delete forms[i]; // Delete all created forms
         }

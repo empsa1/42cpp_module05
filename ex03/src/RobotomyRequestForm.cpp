@@ -3,19 +3,24 @@
 //Default Constructor
 RobotomyRequestForm::RobotomyRequestForm() : AForm("RobotomyRequestForm", 72, 45), target("default")
 {
+    std::cout << DEFAULT_CONSTRUCTOR << std::endl;
 }
 //Parameter constructor
 RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm("RobotomyRequestForm", 72, 45), target(target) 
 {
+    std::cout << PARAMTER_CONSTRUCTOR << std::endl;
 }
 
 //Copy constructor
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm("RobotomyRequestForm", 72, 45), target(other.getTarget())
 {
+    std::cout << COPY_CONSTRUCTOR << std::endl;
     *this = other;
 }
 // Destructor
-RobotomyRequestForm::~RobotomyRequestForm() {
+RobotomyRequestForm::~RobotomyRequestForm()
+{
+    std::cout << DESTRUCTOR << std::endl;
 }
 
 //Overloaded Constructor

@@ -3,19 +3,24 @@
 //Default Constructor
 PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5), target("default")
 {
+    std::cout << DEFAULT_CONSTRUCTOR << std::endl;
 }
 //Parameter constructor
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5), target(target) 
 {
+    std::cout << PARAMTER_CONSTRUCTOR << std::endl;
 }
 
 //Copy constructor
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm("PresidentialPardonForm", 25, 5), target(other.getTarget())
 {
+    std::cout << COPY_CONSTRUCTOR << std::endl;
     *this = other;
 }
 // Destructor
-PresidentialPardonForm::~PresidentialPardonForm() {
+PresidentialPardonForm::~PresidentialPardonForm()
+{
+    std::cout << DESTRUCTOR << std::endl;
 }
 
 //Overloaded Constructor

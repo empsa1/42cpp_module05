@@ -3,19 +3,24 @@
 //Default Constructor
 ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", 145, 137), target("default")
 {
+    std::cout << DEFAULT_CONSTRUCTOR << std::endl;
 }
 //Parameter constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm("ShrubberyCreationForm", 145, 137), target(target) 
 {
+    std::cout << PARAMTER_CONSTRUCTOR << std::endl;
 }
 
 //Copy constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm("ShrubberyCreationForm", 145, 137), target(other.getTarget())
 {
+    std::cout << COPY_CONSTRUCTOR << std::endl;
     *this = other;
 }
 // Destructor
-ShrubberyCreationForm::~ShrubberyCreationForm() {
+ShrubberyCreationForm::~ShrubberyCreationForm()
+{
+    std::cout << DESTRUCTOR << std::endl;
 }
 
 //Overloaded Constructor

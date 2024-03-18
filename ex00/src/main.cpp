@@ -8,16 +8,17 @@ int main()
 	try
 	{
 		Bureaucrat b("ze", -100);
-		std::cout << b;	
+		std::cout << b;
 		b.incrementGrade();
 		std::cout << b.getGrade() << "\n";
 		b.decrementGrade();
 		std::cout << b.getGrade() << "\n";
 	}
-	catch(const GradeTooHighException& e)
+	catch(const std::exception& e)
 	{
-		std::cout << e.error();
+		std::cout << e.what();
 	}
+	
 	std::cout << "\n===== Try creating a Bureaucrat with 151 =====\n\n";
 	try
 	{
@@ -28,47 +29,46 @@ int main()
 		b.decrementGrade();
 		std::cout << b.getGrade() << "\n";
 	}
-	catch(const GradeTooLowException& e)
+	catch(const std::exception& e)
 	{
-		std::cout << e.error();
+		std::cout << e.what();
 	}
-    try {
-	    std::cout << "\n===== Try creating a Bureaucrat with 100 =====\n\n";
-	    Bureaucrat b("ze", 100);
-	    std::cout << b;
-	    b.incrementGrade();
-	    std::cout << b.getGrade() << "\n";
-	    b.decrementGrade();
-	    std::cout << b.getGrade() << "\n";
-    } catch(const GradeTooLowException& e)
+	
+	std::cout << "\n===== Try creating a Bureaucrat with 100 =====\n\n";
+	try
 	{
-		std::cout << e.error();
+		Bureaucrat b("ze", 100);
+		std::cout << b;
+		b.incrementGrade();
+		std::cout << b.getGrade() << "\n";
+		b.decrementGrade();
+		std::cout << b.getGrade() << "\n";
 	}
-    catch(const GradeTooHighException& e)
+	catch(const std::exception& e)
 	{
-		std::cout << e.error();
+		std::cout << e.what();
 	}
+	
 	std::cout << "\n===== Try creating a Bureaucrat with 1 =====\n\n";
-    try {
-	    Bureaucrat b("ze", 1);
-	    std::cout << b;
-	    std::cout << "Prints\n";
-	    b.incrementGrade();
-	    std::cout << "Will not print\n";
-	    std::cout << b.getGrade() << "\n";
-	    b.incrementGrade();
-	    std::cout << b.getGrade() << "\n";
-	    b.decrementGrade();
-	    std::cout << b.getGrade() << "\n";
-	    b.decrementGrade();
-	    std::cout << b.getGrade() << "\n";
-    } catch(const GradeTooLowException& e)
+	try
 	{
-		std::cout << e.error();
+		Bureaucrat b("ze", 1);
+		std::cout << b;
+		std::cout << "Prints\n";
+		b.incrementGrade();
+		std::cout << "Will not print\n";
+		std::cout << b.getGrade() << "\n";
+		b.setGrade(150);
+		b.incrementGrade();
+		std::cout << b.getGrade() << "\n";
+		b.decrementGrade();
+		std::cout << b.getGrade() << "\n";
+		b.decrementGrade();
+		std::cout << b.getGrade() << "\n";
 	}
-    catch(const GradeTooHighException& e)
+	catch(const std::exception& e)
 	{
-		std::cout << e.error();
+		std::cout << e.what();
 	}
 	return (0);
 }

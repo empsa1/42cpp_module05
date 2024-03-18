@@ -1,13 +1,5 @@
 #include "../includes/Bureaucrat.hpp"
 
-const char* GradeTooHighException::error() const throw() {
-    return RED GRADE_TO_HIGH RESET;
-}
-
-const char* GradeTooLowException::error() const throw() {
-    return RED GRADE_TO_LOW RESET;
-}
-
 Bureaucrat::Bureaucrat(void) : name("Not defined"), grade(150) {
     std::cout << YELLOW DEFAULT_CONSTRUCTOR RESET << "Created: " << name << ", Grade: " << grade << std::endl;
 }
@@ -46,6 +38,15 @@ int Bureaucrat::getGrade() const {
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
     os << CYAN OVERLOAD_OPERATOR RESET << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << std::endl;
     return os;
+}
+
+void Bureaucrat::setGrade(int grade)
+{
+    if (grade > 150)
+        throw(Bureaucrat::GradeTooHighException());
+    if (grade < 1)
+        throw(Bureaucrat::GradeTooLowException());
+    this->grade = grade;
 }
 
 void Bureaucrat::incrementGrade() {

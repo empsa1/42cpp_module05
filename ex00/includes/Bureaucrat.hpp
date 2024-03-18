@@ -6,22 +6,27 @@
 #include <cstdlib>
 #include "../includes/Colors.hpp"
 
-class GradeTooHighException : public std::exception {
-public:
-    virtual const char* error() const throw();
-};
-
-class GradeTooLowException : public std::exception {
-public:
-    virtual const char* error() const throw();
-};
-
 class Bureaucrat {
 private:
     const std::string name;
     int grade;
 
 public:
+    class GradeTooHighException : public std::exception {
+        public:
+            virtual const char* what() const throw()
+            {
+                return RED GRADE_TO_HIGH RESET;
+            }
+        };
+
+    class GradeTooLowException : public std::exception {
+        public:
+            virtual const char* what() const throw()
+            {
+                return RED GRADE_TO_LOW RESET;
+            }
+        };
     Bureaucrat(void); 
     Bureaucrat(const std::string& name, int grade);
     Bureaucrat(const Bureaucrat& other);
@@ -30,6 +35,7 @@ public:
 
     const std::string& getName() const;
     int getGrade()  const;
+    void setGrade(int grade);
     void incrementGrade();
     void decrementGrade();
 };
